@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Git/KM/svelte-docs/**)",
+      "Bash(npm create:*)",
+      "Bash(npx sv create:*)",
+      "Bash(npm install)",
+      "Bash(npm link:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npx svelte-kit sync)",
+      "Bash(npm install:*)",
+      "Bash(npm unlink:*)",
+      "WebFetch(domain:localhost)",
+      "Bash(npm run build:*)",
+      "Bash(make:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

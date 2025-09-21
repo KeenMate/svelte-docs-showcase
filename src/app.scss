@@ -1,0 +1,58 @@
+/* Import Svelte Docs styles first with @use */
+@use '@keenmate/svelte-docs/styles/main.scss';
+
+/* Import Bootstrap CSS */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* Custom styles for svelte-docs showcase */
+/* Based on svelte-docs color scheme */
+:root {
+  --docs-primary: #00A7E1;
+  --docs-primary-dark: #007EA7;
+  --docs-secondary: #003459;
+  --docs-dark: #00171F;
+}
+
+/* Custom button styles */
+.btn-primary {
+  background-color: var(--docs-primary);
+  border-color: var(--docs-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--docs-primary-dark);
+  border-color: var(--docs-primary-dark);
+}
+
+.text-primary {
+  color: var(--docs-primary) !important;
+}
+
+/* Fix code block positioning and indentation */
+pre {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  text-indent: 0 !important;
+  white-space: pre !important;
+}
+
+pre code {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  text-indent: 0 !important;
+  display: block;
+  overflow-x: auto;
+}
+
+/* Ensure code blocks are properly aligned regardless of parent container indentation */
+.code-block-wrapper,
+[class*="code-block"],
+[class*="CodeBlock"] {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+/* Reset any inherited text indentation for code elements */
+code {
+  text-indent: 0 !important;
+}
