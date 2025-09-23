@@ -46,8 +46,8 @@ svelte-docs-showcase/
 - SvelteKit 2.x
 - Svelte 5.x
 - TypeScript
-- @keenmate/svelte-docs (via npm link)
-- Bootstrap 5.3.2 (included in library)
+- @keenmate/svelte-docs v1.0.0-rc02+ (via npm link)
+- Bootstrap 5.3.8 (included in library)
 - Highlight.js (included in library)
 
 ## Development Rules

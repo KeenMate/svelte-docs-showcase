@@ -226,16 +226,84 @@ const layoutProps: Partial<DocLayoutProps> = {
 			{/snippet}
 		</ShowcaseSection>
 
+		<!-- SSR Configuration -->
+		<div class="mt-5">
+			<h3 class="mb-4">SSR Configuration System</h3>
+			<div class="alert alert-success">
+				<strong>🆕 New in v1.0.0-rc02:</strong> Server-Side Rendering (SSR) support with complete FOUC elimination!
+			</div>
+			<CleanCodeShowcase
+				titleText="SSR Configuration Setup"
+				svelteCodeContent={`<!-- src/routes/+layout.server.ts -->
+import type { PartialDocsConfig } from '@keenmate/svelte-docs';
+
+export async function load() {
+  const config: PartialDocsConfig = {
+    site: {
+      title: 'My Documentation',
+      description: 'Documentation for my project',
+      keywords: ['documentation', 'api', 'guide'],
+      author: 'Your Name'
+    },
+    company: {
+      name: 'Your Company',
+      website: 'https://example.com',
+      social: {
+        github: 'https://github.com/username'
+      }
+    },
+    navigation: {
+      main: [
+        { label: 'Home', href: '/', icon: '🏠' },
+        { label: 'Docs', href: '/docs', icon: '📚' }
+      ]
+    },
+    features: {
+      search: true,
+      breadcrumbs: true,
+      tableOfContents: true
+    }
+  };
+
+  return { config };
+}`}
+				typescriptCodeContent={`<!-- src/routes/+layout.svelte -->
+<script lang="ts">
+  import { ConfigProvider } from '@keenmate/svelte-docs';
+  import '../app.scss';
+
+  // Receive data from +layout.server.ts
+  export let data;
+</script>
+
+<!-- Use server-provided configuration -->
+<ConfigProvider configData={data.config}>
+  <slot />
+</ConfigProvider>`}
+				cssCodeContent={`/* Benefits of SSR Configuration */
+/*
+✅ Eliminates FOUC (Flash of Unstyled Content)
+✅ Improved SEO with server-rendered meta tags
+✅ Better performance with server-side config loading
+✅ Consistent styling from initial page load
+✅ Enhanced user experience
+*/
+
+/* The configuration is now loaded on the server
+   and styles are applied before the page renders */`}
+			/>
+		</div>
+
 		<!-- ConfigProvider Examples -->
 		<div class="mt-5">
 			<h3 class="mb-4">ConfigProvider Examples</h3>
 			<CleanCodeShowcase
-				titleText="Configuration Examples"
+				titleText="Client-Side Configuration (Legacy)"
 				svelteCodeContent={`<script lang="ts">
   import { ConfigProvider } from '@keenmate/svelte-docs';
   import type { PartialDocsConfig } from '@keenmate/svelte-docs';
 
-  // Basic configuration
+  // Basic client-side configuration
   const basicConfig: PartialDocsConfig = {
     site: {
       title: 'My Documentation',
@@ -248,47 +316,9 @@ const layoutProps: Partial<DocLayoutProps> = {
       ]
     }
   };
-
-  // Advanced configuration with nested navigation
-  const advancedConfig: PartialDocsConfig = {
-    site: {
-      title: 'Advanced Docs',
-      description: 'Comprehensive documentation',
-      keywords: ['documentation', 'api', 'guide'],
-      author: 'Your Name'
-    },
-    company: {
-      name: 'Your Company',
-      website: 'https://example.com',
-      social: {
-        github: 'https://github.com/username',
-        twitter: 'https://twitter.com/username'
-      }
-    },
-    navigation: {
-      main: [
-        { label: 'Home', href: '/', icon: '🏠' },
-        {
-          label: 'Documentation',
-          href: '/docs',
-          icon: '📚',
-          children: [
-            { label: 'Getting Started', href: '/docs/getting-started' },
-            { label: 'API Reference', href: '/docs/api' },
-            { label: 'Examples', href: '/docs/examples' }
-          ]
-        },
-        { label: 'About', href: '/about', icon: 'ℹ️' }
-      ]
-    },
-    features: {
-      search: true,
-      breadcrumbs: true,
-      tableOfContents: true
-    }
-  };
 </script>
 
+<!-- Note: Consider migrating to SSR configuration for better performance -->
 <ConfigProvider configData={basicConfig}>
   <slot />
 </ConfigProvider>`}

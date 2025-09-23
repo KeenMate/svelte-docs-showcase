@@ -275,6 +275,143 @@ export interface CustomDocsConfig extends PartialDocsConfig {
 			/>
 		</div>
 
+		<!-- New in v1.0.0-rc02 -->
+		<div class="mt-5">
+			<h2 class="mb-4">🆕 New in v1.0.0-rc02</h2>
+			<div class="alert alert-success">
+				<strong>Major improvements to layout, SSR support, and customization!</strong>
+			</div>
+
+			<!-- SCSS Variables System -->
+			<ShowcaseSection
+				titleText="SCSS Variables System"
+				subtitleText="50+ customization variables for complete styling control">
+
+				{#snippet demoContent()}
+					<h4>Comprehensive Customization</h4>
+					<p>The new SCSS variables system gives you complete control over:</p>
+					<ul>
+						<li><strong>Typography spacing</strong> - Headers, paragraphs, lists</li>
+						<li><strong>Colors</strong> - Primary, secondary, heading colors</li>
+						<li><strong>Layout dimensions</strong> - Navbar height, sidebar width</li>
+						<li><strong>Font families</strong> - Base and monospace fonts</li>
+					</ul>
+				{/snippet}
+
+				{#snippet controlsContent()}
+					<h4>Usage</h4>
+					<CleanCodeBlock
+						codeContent={`// Create _variables.scss in your project
+$h1-margin-top: 2rem !default;
+$h2-margin-top: 1.25rem !default;
+$h3-margin-top: 1rem !default;
+$heading-color-h1: #2c3e50 !default;
+$code-bg-color: #f8f9fa !default;
+$navbar-height: 4rem !default;
+$sidebar-width: 16rem !default;
+$font-family-base: 'Inter', system-ui, sans-serif !default;
+
+// Import before using the library
+@import './variables';
+@import '@keenmate/svelte-docs/styles/main.scss';`}
+						languageType="scss"
+					/>
+				{/snippet}
+
+				{#snippet descriptionContent()}
+					<h4>Layout Spacing Improvements</h4>
+					<ul>
+						<li>Optimized header margins (h2: 2rem → 1.25rem, h3: 1.5rem → 1rem)</li>
+						<li>Better bottom margins for vertical rhythm</li>
+						<li>Reduced main container padding for cleaner layouts</li>
+						<li>First-child rules to remove unwanted top margins</li>
+					</ul>
+				{/snippet}
+			</ShowcaseSection>
+
+			<!-- SSR Configuration -->
+			<ShowcaseSection
+				titleText="Server-Side Rendering (SSR)"
+				subtitleText="Eliminate FOUC and improve SEO with server-side configuration">
+
+				{#snippet demoContent()}
+					<h4>Benefits</h4>
+					<div class="row g-3">
+						<div class="col-md-6">
+							<div class="border rounded p-3">
+								<h5>✅ FOUC Elimination</h5>
+								<p class="mb-0">No more flash of unstyled content</p>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="border rounded p-3">
+								<h5>🚀 Better SEO</h5>
+								<p class="mb-0">Server-rendered meta tags</p>
+							</div>
+						</div>
+					</div>
+				{/snippet}
+
+				{#snippet controlsContent()}
+					<h4>Implementation</h4>
+					<CleanCodeBlock
+						codeContent={`// src/routes/+layout.server.ts
+import type { PartialDocsConfig } from '@keenmate/svelte-docs';
+
+export async function load() {
+  const config: PartialDocsConfig = {
+    // Your configuration
+  };
+
+  return { config };
+}`}
+						languageType="typescript"
+					/>
+				{/snippet}
+
+				{#snippet descriptionContent()}
+					<p><strong>Recommended for all new projects!</strong> SSR configuration provides better performance and user experience compared to client-side configuration.</p>
+					<a href="/components/layout" class="btn btn-sm btn-outline-primary">
+						Learn More About SSR Setup →
+					</a>
+				{/snippet}
+			</ShowcaseSection>
+
+			<!-- CSS Architecture -->
+			<ShowcaseSection
+				titleText="CSS Architecture Overhaul"
+				subtitleText="Centralized styling with modern SCSS patterns">
+
+				{#snippet demoContent()}
+					<h4>What Changed</h4>
+					<ul>
+						<li><strong>Centralized CSS</strong> - All styles moved to main.scss</li>
+						<li><strong>Component Cleanup</strong> - Removed duplicate CSS from components</li>
+						<li><strong>Modern SCSS</strong> - Updated to @use syntax (no more deprecation warnings)</li>
+						<li><strong>Better Maintainability</strong> - Single source of truth for styling</li>
+					</ul>
+				{/snippet}
+
+				{#snippet controlsContent()}
+					<h4>Migration</h4>
+					<p class="text-muted">Update your SCSS imports:</p>
+					<CleanCodeBlock
+						codeContent={`// Old way (deprecated)
+@import '@keenmate/svelte-docs/styles/main.scss';
+
+// New way (recommended)
+@use '@keenmate/svelte-docs/styles/main.scss';`}
+						languageType="scss"
+					/>
+				{/snippet}
+
+				{#snippet descriptionContent()}
+					<h4>Component Improvements</h4>
+					<p>CodeRenderer, CodeBlock, and CodeShowcase now have better whitespace handling with the &lt;pre&gt; tag moved into the renderer component to prevent formatting issues.</p>
+				{/snippet}
+			</ShowcaseSection>
+		</div>
+
 		<!-- Next Steps -->
 		<div class="mt-5 p-4 bg-light rounded">
 			<h3>Next Steps</h3>

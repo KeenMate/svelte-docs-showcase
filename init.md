@@ -75,6 +75,7 @@ svelte-docs-showcase/
 ```json
 {
   "dependencies": {
+    "@keenmate/svelte-docs": "^1.0.0-rc02",
     "bootstrap": "^5.3.8"
   },
   "devDependencies": {
@@ -92,10 +93,14 @@ svelte-docs-showcase/
 
 ## Configuration
 
-### Main Layout Configuration
+### SSR Configuration (Recommended for v1.0.0-rc02+)
+
 ```typescript
-// src/routes/+layout.svelte
-const config: PartialDocsConfig = {
+// src/routes/+layout.server.ts
+import type { PartialDocsConfig } from '@keenmate/svelte-docs';
+
+export async function load() {
+  const config: PartialDocsConfig = {
   site: {
     title: 'Svelte Docs Showcase',
     description: 'Complete documentation and showcase for @keenmate/svelte-docs',
@@ -132,9 +137,31 @@ const config: PartialDocsConfig = {
     search: true,
     breadcrumbs: true,
     tableOfContents: true
-  }
-};
+  };
+
+  return { config };
+}
 ```
+
+```typescript
+// src/routes/+layout.svelte
+<script lang="ts">
+  import { ConfigProvider } from '@keenmate/svelte-docs';
+  import '../app.scss';
+
+  export let data;
+</script>
+
+<ConfigProvider configData={data.config}>
+  <slot />
+</ConfigProvider>
+```
+
+**Benefits of SSR Configuration:**
+- ✅ Eliminates FOUC (Flash of Unstyled Content)
+- ✅ Improved SEO with server-rendered meta tags
+- ✅ Better performance with server-side config loading
+- ✅ Enhanced user experience
 
 ### Static Site Generation
 ```typescript

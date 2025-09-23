@@ -12,7 +12,8 @@
       "Bash(npm unlink:*)",
       "WebFetch(domain:localhost)",
       "Bash(npm run build:*)",
-      "Bash(make:*)"
+      "Bash(make:*)",
+      "Read(//c/Git/KM/svelte-switch-showcase/**)"
     ],
     "deny": [],
     "ask": []

@@ -1,50 +1,10 @@
 <script lang="ts">
 	import { ConfigProvider } from '@keenmate/svelte-docs';
-	import type { PartialDocsConfig } from '@keenmate/svelte-docs';
 	import '../app.scss';
 
-	const config: PartialDocsConfig = {
-		site: {
-			title: 'Svelte Docs Showcase',
-			description: 'Complete documentation and showcase for @keenmate/svelte-docs component library',
-			keywords: ['svelte', 'sveltekit', 'documentation', 'components', 'showcase', 'keenmate'],
-			author: 'KeenMate',
-			url: 'https://svelte-docs.keenmate.com',
-			language: 'en'
-		},
-		company: {
-			name: 'KeenMate',
-			website: 'https://keenmate.com',
-			social: {
-				github: 'https://github.com/keenmate/svelte-docs'
-			}
-		},
-		navigation: {
-			main: [
-				{ label: 'Home', href: '/', icon: '🏠' },
-				{ label: 'Getting Started', href: '/getting-started', icon: '🚀' },
-				{
-					label: 'Components',
-					href: '/components/layout',
-					icon: '📦',
-					children: [
-						{ label: 'Layout', href: '/components/layout' },
-						{ label: 'Content', href: '/components/content' },
-						{ label: 'Navigation', href: '/components/navigation' }
-					]
-				},
-				{ label: 'Configuration', href: '/configuration', icon: '⚙️' },
-				{ label: 'Examples', href: '/examples', icon: '💡' }
-			]
-		},
-		features: {
-			search: true,
-			breadcrumbs: true,
-			tableOfContents: true
-		}
-	};
+	export let data;
 </script>
 
-<ConfigProvider configData={config}>
+<ConfigProvider configData={data.config}>
 	<slot />
 </ConfigProvider>
