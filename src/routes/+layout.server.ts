@@ -48,7 +48,10 @@ export async function load() {
 		features: {
 			search: true,
 			breadcrumbs: true,
-			tableOfContents: true
+			tableOfContents: true,
+			analyticsScripts: [
+				'<script defer data-domain="svelte-docs.keenmate.dev" src="https://stats.keenmate.services/js/plausible.js"></script>'
+			]
 		}
 	};
 
